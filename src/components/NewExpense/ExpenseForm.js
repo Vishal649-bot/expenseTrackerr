@@ -8,6 +8,7 @@ const ExpenseForm = ()=>{
     const [enteredtitle,setenteredtitle] = useState('')
     const [enteredAmount,setenteredAmount] = useState('')
     const [enteredDate,setenteredDate] = useState('')
+    
     const titleChangeHandler =(event)=>{
             setenteredtitle(event.target.value)
             console.log(event.target.value);
@@ -20,8 +21,26 @@ const dateChangeHandler =(event)=>{
     setenteredDate(event.target.value)
     console.log(event.target.value);
 }
-    
-    return<form action="">
+// const showOnScreen =()=>{
+//     let obj = {
+//         enteredtitle,
+//         enteredAmount,
+//         enteredDate
+//     }
+//     console.log(obj);
+//     document.getElementById("show").innerHTML = JSON.stringify(obj)
+// }
+const submitHandler = (event)=>{
+    event.preventDefault();
+    const expenseData = {
+        title: enteredtitle,
+        amount: enteredAmount,
+        date: new Date(enteredDate)
+    }
+    console.log(expenseData);
+
+}
+    return<form onSubmit={submitHandler}>
     <div className="new-expense__controls">
         <div className="new-expense__controls">
         <label>Title</label>
@@ -42,7 +61,8 @@ const dateChangeHandler =(event)=>{
     <div className="new-expense__actions">
         <button type="submit">Add Expense</button>
         
-        </div>
+    </div>
+    
     </form>
 }
 
